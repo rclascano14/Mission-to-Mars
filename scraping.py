@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+## Mission to Mars Challenge
+## By Charles Lascano
+
 # Import Splinter, BeautifulSoup, and Pandas
 from splinter import Browser
 from bs4 import BeautifulSoup as soup
@@ -15,6 +18,7 @@ def scrape_all():
     browser = Browser('chrome', **executable_path, headless=True)
 
     news_title, news_paragraph = mars_news(browser)
+    hemisphere_image_urls=hemisphere(browser)
 
     # Run all scraping functions and store results in a dictionary
     data = {
@@ -22,6 +26,7 @@ def scrape_all():
         "news_paragraph": news_paragraph,
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
+        "hemispheres": hemisphere_image_urls,
         "last_modified": dt.datetime.now()
     }
 
